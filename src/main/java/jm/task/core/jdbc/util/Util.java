@@ -22,13 +22,4 @@ public class Util {
         }
         return connection;
     }
-
-    public static void endConnection() {
-        try {
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
 }
