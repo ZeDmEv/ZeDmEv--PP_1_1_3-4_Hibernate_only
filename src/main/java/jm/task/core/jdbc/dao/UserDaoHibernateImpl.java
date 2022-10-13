@@ -8,14 +8,11 @@ import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 
 public class UserDaoHibernateImpl implements UserDao {
-    public UserDaoHibernateImpl() {
-
-    }
-
-
+    private static final Logger log = Logger.getLogger(UserDaoHibernateImpl.class.getName());
     @Override
     public void createUsersTable() {
         try (Session session = Util.getFactory().getCurrentSession()) {
@@ -56,7 +53,7 @@ public class UserDaoHibernateImpl implements UserDao {
             session.delete(session.get(User.class, id));
             session.getTransaction().commit();
         } catch (IllegalArgumentException e) {
-            System.err.println("Произошла ошибка: " + e.getMessage());
+            log.warning("Произошла ошибка: " + e.getMessage());
         }
     }
 
@@ -70,7 +67,7 @@ public class UserDaoHibernateImpl implements UserDao {
             users = session.createQuery(cq).getResultList();
             session.getTransaction().commit();
         } catch (IllegalArgumentException e) {
-            System.err.println("Произошла ошибка: " + e.getMessage());
+            log.warning("Произошла ошибка: " + e.getMessage());
         }
         return users;
     }
@@ -82,7 +79,7 @@ public class UserDaoHibernateImpl implements UserDao {
             session.createQuery("delete from User").executeUpdate();
             session.getTransaction().commit();
         } catch (IllegalArgumentException e) {
-            System.err.println("Произошла ошибка: " + e.getMessage());
+            log.warning("Произошла ошибка: " + e.getMessage());
         }
     }
 }

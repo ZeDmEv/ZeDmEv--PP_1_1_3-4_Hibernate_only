@@ -11,29 +11,34 @@ import java.util.List;
 import java.util.SortedMap;
 
 public class UserServiceImpl implements UserService {
+
     private UserDaoJDBCImpl udji;
 
+    public UserServiceImpl() {
+        udji = new UserDaoJDBCImpl();
+    }
+
     public void createUsersTable() {
-        new UserDaoHibernateImpl().createUsersTable();
+        udji.createUsersTable();
     }
 
     public void dropUsersTable() {
-        new UserDaoHibernateImpl().dropUsersTable();
+        udji.dropUsersTable();
     }
 
     public void saveUser(String name, String lastName, byte age) {
-        new UserDaoHibernateImpl().saveUser(name, lastName, age);
+        udji.saveUser(name, lastName, age);
     }
 
     public void removeUserById(long id) {
-        new UserDaoHibernateImpl().removeUserById(id);
+        udji.removeUserById(id);
     }
 
     public List<User> getAllUsers() {
-        return new UserDaoHibernateImpl().getAllUsers();
+        return udji.getAllUsers();
     }
 
     public void cleanUsersTable() {
-        new UserDaoHibernateImpl().cleanUsersTable();
+        udji.cleanUsersTable();
     }
 }
