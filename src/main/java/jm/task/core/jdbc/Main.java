@@ -7,8 +7,10 @@ import jm.task.core.jdbc.util.Util;
 
 public class Main {
     public static void main(String[] args) {
-        Util.getConnection();
-        UserDao userDao = new UserDaoJDBCImpl();
+        //Util.getConnection();
+        //UserDao userDao = new UserDaoJDBCImpl();
+        Util.getFactory();
+        UserDao userDao = new UserDaoHibernateImpl();
         userDao.dropUsersTable();
         userDao.createUsersTable();
         userDao.saveUser("Name1", "LastName1", (byte) 20);
@@ -21,8 +23,6 @@ public class Main {
         userDao.dropUsersTable();
 
 //        Util.getConnection();
-//        Util.getFactory();
-//        UserDao userDao = new UserDaoHibernateImpl();
 //        userDao.dropUsersTable();
 //        userDao.createUsersTable();
 //        userDao.saveUser("Petya", "Petrov", (byte) 15);

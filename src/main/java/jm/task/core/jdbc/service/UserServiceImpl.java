@@ -12,10 +12,10 @@ import java.util.SortedMap;
 
 public class UserServiceImpl implements UserService {
 
-    private UserDaoJDBCImpl udji;
+    private UserDaoHibernateImpl udji;
 
     public UserServiceImpl() {
-        udji = new UserDaoJDBCImpl();
+        udji = new UserDaoHibernateImpl();
     }
 
     public void createUsersTable() {
