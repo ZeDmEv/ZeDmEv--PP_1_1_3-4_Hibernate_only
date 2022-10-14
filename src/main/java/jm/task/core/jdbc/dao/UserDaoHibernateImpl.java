@@ -25,7 +25,6 @@ public class UserDaoHibernateImpl implements UserDao {
             session.getTransaction().commit();
         }
     }
-
     @Override
     public void dropUsersTable() {
         try (Session session = Util.getFactory().getCurrentSession()) {

@@ -22,14 +22,6 @@ public class Main {
         userDao.cleanUsersTable();
         userDao.dropUsersTable();
 
-//        Util.getConnection();
-//        userDao.dropUsersTable();
-//        userDao.createUsersTable();
-//        userDao.saveUser("Petya", "Petrov", (byte) 15);
-//        userDao.saveUser("Petya", "Petrov", (byte) 15);
-//        userDao.saveUser("Petya", "Petrov", (byte) 15);
-//        userDao.removeUserById(1);
-//        userDao.removeUserById(1);
 
     }
 }

@@ -4,10 +4,13 @@ import com.mysql.cj.Session;
 import jm.task.core.jdbc.model.User;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.cfg.Environment;
 
+import javax.persistence.Column;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 import java.util.logging.Logger;
 
 public class Util {
@@ -17,7 +20,7 @@ public class Util {
     private static final String user = "root";
     private static final String password = "root";
     private static Connection connection;
-    private static SessionFactory factory = null;
+    private static SessionFactory factory;
 
     public static Connection getConnection() {
         try {
@@ -32,10 +35,19 @@ public class Util {
     }
     public static SessionFactory getFactory() {
         if (factory == null) {
-            factory = new Configuration()
-                    .configure()
-                    .addAnnotatedClass(User.class)
-                    .buildSessionFactory();
+            Configuration config = new Configuration();
+            Properties settings = new Properties();
+            settings.put("hibernate.id.new_generator_mappings", false);
+            settings.put(Environment.DRIVER, "com.mysql.jdbc.Driver");
+            settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
+            settings.put(Environment.URL, url);
+            settings.put(Environment.USER, user);
+            settings.put(Environment.PASS, password);
+            settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQLDialect");
+            settings.put(Environment.SHOW_SQL, true);
+            config.setProperties(settings);
+            config.addAnnotatedClass(User.class);
+            factory = config.buildSessionFactory();
         }
         return factory;
     }

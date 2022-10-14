@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
     }
 
     public void createUsersTable() {
-        udji.createUsersTable();
+       udji.createUsersTable();
     }
 
     public void dropUsersTable() {
